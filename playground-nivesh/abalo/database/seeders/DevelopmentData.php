@@ -14,7 +14,7 @@ class DevelopmentData extends Seeder
     public function run(): void
     {
         //
-        $ab_user_FilePath = public_path('/storage/file_data/user.csv');
+        $ab_user_FilePath = storage_path('file_data/user.csv');
         $file = fopen($ab_user_FilePath, "r");
         $header = NULL;
         $data = array();
@@ -40,7 +40,7 @@ class DevelopmentData extends Seeder
         }
         fclose($file);
 
-        $ab_articles_FilePath = public_path('/storage/file_data/articles.csv');
+        $ab_articles_FilePath = storage_path('file_data/articles.csv');
         $file = fopen($ab_articles_FilePath, "r");
         $header = NULL;
         $data = array();
@@ -71,7 +71,7 @@ class DevelopmentData extends Seeder
         fclose($file);
 
 
-        $ab_articlecategory_FilePath = public_path('/storage/file_data/articlecategory.csv');
+        $ab_articlecategory_FilePath = storage_path('file_data/articlecategory.csv');
         $file = fopen($ab_articlecategory_FilePath, "r");
         $header = NULL;
         $data = array();
