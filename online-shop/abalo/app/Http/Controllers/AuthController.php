@@ -11,15 +11,9 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function login(Request $request) {
-
-        $username = $request->input('username');
-        $request->session()->put('abalo_user', $username);
-
-        $emailadresse = $request->input('emailadresse');
-        $request->session()->put('abalo_mail', $emailadresse);
-
+        $request->session()->put('abalo_user', 'visitor');
+        $request->session()->put('abalo_mail', 'visitor@abalo.example.com');
         $request->session()->put('abalo_time', time());
-
         return redirect()->route('haslogin');
     }
 
@@ -39,4 +33,5 @@ class AuthController extends Controller
         else $r["auth"]="false";
         return response()->json($r);
     }
+
 }
