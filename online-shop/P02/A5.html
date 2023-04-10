@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Aufgabe 5</title>
+</head>
+<body>
+
+<script>
+    "use strict";
+    var data = {
+        'produkte': [
+            { name: 'Ritterburg', preis: 59.99, kategorie: 1, anzahl: 3 },
+            { name: 'Gartenschlau 10m', preis: 6.50, kategorie: 2, anzahl: 5 },
+            { name: 'Robomaster' ,preis: 199.99, kategorie: 1, anzahl: 2 },
+            { name: 'Pool 250x400', preis: 250, kategorie: 2, anzahl: 8 },
+            { name: 'Rasenmähroboter', preis: 380.95, kategorie: 2, anzahl: 4 },
+            { name: 'Prinzessinnenschloss', preis: 59.99, kategorie: 1, anzahl: 5 }
+        ],
+        'kategorien': [
+            { id: 1, name: 'Spielzeug' },
+            { id: 2, name: 'Garten' }
+        ]
+    };
+
+    // a
+    let maxPreis = 0;
+    let maxPreis_name;
+    function getMaxPreis(info_array)
+    {
+        let product_array = info_array['produkte'];
+        for(let i = 0; i < product_array.length; i++)
+            for(let key in product_array[i]) {
+                if (key === 'preis')
+                    if (maxPreis < product_array[i][key]) {
+                        maxPreis = product_array[i][key];
+                        maxPreis_name = product_array[i]['name']
+                    }
+            }
+        return 'Max Preis: ' + maxPreis + ' Name: ' + maxPreis_name;
+    }
+    console.log(getMaxPreis(data));
+
+    // b
+    let minPreis = maxPreis;
+    let minPreis_name;
+    function getMinPreis(info_array)
+    {
+        let product_array = info_array['produkte'];
+        for(let i = 0; i < product_array.length; i++)
+            for(let key in product_array[i]) {
+                if (key === 'preis')
+                    if (minPreis > product_array[i][key]) {
+                        minPreis = product_array[i][key];
+                        minPreis_name = product_array[i]['name']
+                    }
+            }
+        return 'Min Preis: ' + minPreis + ' Name: ' + minPreis_name;
+    }
+    console.log(getMinPreis(data));
+
+    // c
+    let sum_preis = 0;
+    function getPreisSum(info_array)
+    {
+        let product_array = info_array['produkte'];
+        for(let i = 0; i < product_array.length; i++)
+            for(let key in product_array[i]) {
+                if (key === 'preis')
+                    sum_preis += product_array[i][key];
+            }
+        return 'Summe Preis: ' + sum_preis;
+    }
+    console.log(getPreisSum(data));
+
+    // d
+    let gesamt_wert = 0;
+    function getGesamtWert(info_array)
+    {
+        let product_array = info_array['produkte'];
+        for(let i = 0; i < product_array.length; i++)
+            gesamt_wert += product_array[i]['preis'] * product_array[i]['anzahl'];
+
+        return 'Gesamt Wert: ' + gesamt_wert;
+    }
+    console.log(getGesamtWert(data));
+
+    // e
+    let anzahl = 0;
+    let id;
+    function getAnzahlProdukteOfKategorie(info_array, category)
+    {
+        for(let i = 0; i < info_array['kategorien'].length; i++)
+            if(info_array['kategorien'][i]['name'] === category)
+                id = info_array['kategorien'][i]['id'];
+
+        for(let i = 0; i < info_array['produkte'].length; i++)
+            if(info_array['produkte'][i]['kategorie'] === id)
+                anzahl += info_array['produkte'][i]['anzahl'];
+
+        return 'Produkte von kategorie ' + category + ': ' + anzahl;
+    }
+    console.log(getAnzahlProdukteOfKategorie(data, 'Garten'))
+
+</script>
+
+</body>
+</html>
