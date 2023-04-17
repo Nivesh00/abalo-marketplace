@@ -35,6 +35,10 @@ Route::get('/m02a07', function ()
     return view ('M02.aufgabe7');
 });
 
-
+// Meilenstein 2 Aufgabe 8
+Route::get('/m02a08', function ()
+{
+    return view ('M02.aufgabe8');
+});
 
 
