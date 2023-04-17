@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function ()
+{
     return view('welcome');
 });
 
@@ -27,5 +28,13 @@ Route::get('/isloggedin', [App\Http\Controllers\AuthController::class, 'islogged
 
 // Meilenstein 1 Aufgabe 10
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'articlesfound']);
+
+// Meilenstein 2 Aufgabe 7
+Route::get('/m02a07', function ()
+{
+    return view ('M02.aufgabe7');
+});
+
+
 
 
