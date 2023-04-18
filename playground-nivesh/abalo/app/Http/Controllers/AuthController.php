@@ -55,12 +55,9 @@ class AuthController extends Controller
             ->get()->toArray();
 
 
-        if(sizeof($exist) || $useremail == 'user@email.de')
+        if(sizeof($exist))
         {
-            $id = 'default';
-
-            if($useremail != 'user@email.de')
-                $id = $exist[0]->id;
+            $id = $exist[0]->id;
 
             $request->session()->put('user_email', $useremail);
             $request->session()->put('Auth', true);

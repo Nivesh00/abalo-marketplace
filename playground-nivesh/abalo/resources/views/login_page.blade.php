@@ -16,8 +16,12 @@
 
         <tbody>
         <tr>
-            <td>default email: user@email.de</td>
-            <td>password not implemented</td>
+            <td>default email</td>
+            <td>admin@abalo.example.com</td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td>not implemented</td>
         </tr>
         <tr>
             <td><label for="email">Emailadresse</label></td>
