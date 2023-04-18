@@ -36,20 +36,6 @@ function Warenkorb()
         korb.style.display = 'none';
     });
 
-    korb.addEventListener('mouseover', function ()
-    {
-        korb.style.display = 'block';
-        korb.style.position = 'absolute';
-        korb.style.top = '30px';
-        korb.style.right = '10px';
-        korb.style.width = '400px';
-        korb.style.height = '600px';
-        korb.style.overflowY = 'auto';
-        korb.style.overflowX = 'hidden';
-        korb.style.backgroundColor = 'lightgrey';
-        document.body.style.cursor = 'pointer';
-    });
-
     korb.addEventListener('mouseout', function ()
     {
         korb.style.display = 'none';
