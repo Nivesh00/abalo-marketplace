@@ -39,12 +39,6 @@ Route::post('login_verify',
     'verify_login'
     ])->name('verify_login');
 
-Route::get(('/loggedin'),
-    [
-        \App\Http\Controllers\AuthController::class,
-        'loggedin'
-    ])->name('loggedin');
-
 Route::get(('/logout'),
     [
         \App\Http\Controllers\AuthController::class,

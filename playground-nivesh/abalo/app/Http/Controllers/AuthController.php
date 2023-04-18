@@ -56,7 +56,21 @@ class AuthController extends Controller
 
         if(sizeof($exist) || $useremail == 'user@email.de')
         {
-            return redirect()->route('loggedin');
+            $id = 'default';
+
+            if($useremail != 'user@email.de')
+                $id = $exist[0]->id;
+
+            $request->session()->put('user_email', $useremail);
+            $request->session()->put('Auth', true);
+            $request->session()->put('user_id', $id);
+            $request->session()->put('time', time());
+
+            return view(
+
+                'welcome',
+                []
+            );
         }
         else
         {
@@ -70,22 +84,6 @@ class AuthController extends Controller
                 ]
             );
         }
-    }
-
-    public function loggedin(Request $request)
-    {
-        $useremail = $request->input('useremail');
-        $password = $request->input('password');
-
-        $request->session()->put('user_email', $useremail);
-        $request->session()->put('Auth', true);
-        $request->session()->put('time', time());
-
-        return view(
-
-            'welcome',
-            []
-        );
     }
 
     public function logout(Request $request)
