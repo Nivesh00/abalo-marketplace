@@ -1,0 +1,51 @@
+A2)
+-Codeanalysator
+-Versionskontroller mit git
+-Automatisches formatieren
+
+A3)
+a)
+Google Chrome	77.03%
+Safari	8.87%
+Mozilla Firefox	7.69%
+
+b)
+Dass die Daten Aktuell sind
+Dass die Daten aus vertrauenswürdigen und als zuverlässigen Quellen kommen
+Dass die der Umfang an Nutzern ausreichend ist, besonders aus verschiedenen Geographischen Quellen
+
+c)
+--
+
+d)
+Für die 3 gängisten Browser Google Chrome, Safari und Firefox.
+Damit ist garantiert, dass Abalo auf so vielen Rechnern wie möglich läuft.
+
+
+A4)
+Unterschiede:
+-In Javascript kann man schnell mittels HTML visuelle interaktionen programmieren
+wie buttons oder Felder. In C++ hat man nur die Konsole, sofern man keine weiteren bibliotheken
+verwenden möchte
+
+-Javascript wird dafür verwenden Anwendungen für das Web zu entwickeln, C++ ist eher
+für Desktop/hardware Applikationen ausgerichtet
+
+-Javascript hat automatische Garbage collection, während man in C++ speicher
+selbst freigeben muss
+
+-Variablentypen muss man in C++ direkt angeben, in JS nicht
+
+-Javascript wird meistens in Verbindung mit anderen backend Programmiersprachen 
+wie PHP und Python verwenden und mit anderen Frontend sprachen wie CSS/HTML
+
+-C++ wird kompiliert, Javascript interpretiert
+
+
+Gemeinsamkeiten:
+-JS und C++ haben beide eine recht ähnliche Syntax
+-Beides sind höhere Programmiersprachen 
+-Beide sind turing complete
+-Beide werden Lokal auf dem Rechner ausgeführt
+-Beides sind Object Orientierte Programmiersprachen
+-Beide verwenden // oder /**/ für kommentare

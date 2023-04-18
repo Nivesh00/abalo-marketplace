@@ -1,0 +1,55 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+}
+
+li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 5px 0;
+    background-color: #f1f1f1;
+    border: 1px solid #e3e3e3;
+}
+
+li:hover ul {
+    display: block;
+}
+
+li a {
+    display: block;
+    padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+}
+
+li:hover > a {
+    background-color: #ddd;
+}
+
+li ul li:hover a {
+    background-color: #ddd;
+}
+
+
+
+#cookie_modal::backdrop
+{
+    background: black;
+    opacity: 70%;
+}
+
+#cookie_modal
+{
+    border: solid 1px;
+    border-radius: 5px;
+    top: 10%
+}
