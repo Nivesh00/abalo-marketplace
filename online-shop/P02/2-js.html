@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beispiele</title>
+</head>
+<body>
+
+<script>
+    "use strict";
+
+    // 2-js1-hallowelt
+    // window.alert("Hallo Welt");
+
+
+    // 2-js2-hallokonsole
+    /*
+    console.error("Hallo Fehler");
+    console.warn("Hallo Warnung");
+    console.info("Hallo Information");
+    */
+
+
+    // 2-js3-funktion
+    /*
+    let Sum = function(a, b)
+    {
+        return a + b;
+    }
+    console.log(Sum(1, 2));
+    */
+
+
+    // 2-js4-funktionalsparameter
+    /*
+    function LogProduct(product, x, y)
+    {
+        return product(x, y);
+    }
+    let z = LogProduct(function(a, b)
+    {
+        return a*b;
+    }, 4, 5);
+    console.log(z);
+    */
+
+
+    // 2-js5-array
+    /*
+    //a
+    let myArray = ["erstes", "zweites", 3, 4];
+    for(let i = 0; i < myArray.length; i++)
+    {
+        console.log(i + "=>" + myArray[i]);
+    }
+    myArray.forEach(function (value, index)
+    {
+        console.log(index + "=>" + value);
+    })
+    let i = 0;
+    for(const value of myArray)
+    {
+        console.log(i++, "=>", value);
+    }
+
+
+    //b
+    let myArray = ['1st', '2nd', '3rd', '4th'];
+    myArray.push('5th');
+    for(let i = 0; i < myArray.length; i++)
+    {
+        console.log(i + "=>" + myArray[i]);
+    }
+    myArray.pop();
+    for(let i = 0; i < myArray.length; i++)
+    {
+        console.log(i + "=>" + myArray[i]);
+    }
+    myArray[1] = '2nd*';
+    for(let i = 0; i < myArray.length; i++)
+    {
+        console.log(i + "=>" + myArray[i]);
+    }
+
+
+
+    // 2-js8-strings
+
+    let myStr = 'Beispiel für ein String in Javascript  ';
+    console.log('String length: ' + myStr.length);
+    console.log('Index of ' + myStr.indexOf('ava'));
+    console.log('Last index of: ' + myStr.lastIndexOf('i'));
+    console.log('Substring: ' + myStr.substring(9, 12));
+    console.log('replace: ' + myStr.replace('Beispiel', 'beispiel'));
+    console.log('Trim: ' + myStr.trim());
+    console.log('Concatenation: ' + myStr.concat('<-- Whitespace'));
+    console.log('Uppercase: ' + myStr.toUpperCase());
+    console.log('Lowercase ' + myStr.toLowerCase());
+    */
+
+    // Line added by Nivesh
+    // Line written by Selim
+
+
+</script>
+
+</body>
+</html>
