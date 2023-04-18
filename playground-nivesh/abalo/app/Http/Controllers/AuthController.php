@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use http\Cookie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\isEmpty;
 
 /**
  * Write static login information to the session.
@@ -99,4 +100,19 @@ class AuthController extends Controller
         );
     }
 
+    public function check_loggin(Request $request)
+    {
+        $to = null;
+
+        if($request->session()->get('to'))
+            $to = $request->session()->get('to');
+        else
+            $to = $request->session()->get('from');
+
+        if($request->session()->has('Auth')) {
+            if ($request->session()->get('Auth'))
+                return view($to);
+        }
+        return view('login_page');
+    }
 }

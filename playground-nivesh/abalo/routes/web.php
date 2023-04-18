@@ -45,6 +45,12 @@ Route::get(('/logout'),
         'logout'
     ])->name('logout');
 
+Route::get('/check_loggin',
+    [
+        \App\Http\Controllers\AuthController::class,
+        'check_loggin'
+    ])->name('check_loggin');
+
 // Meilenstein 1 Aufgabe 10
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'articlesfound']);
 
@@ -61,5 +67,24 @@ Route::get('/m02a08', function ()
 });
 
 // Meilenstein 2 Aufgabe 9
-Route::get('/user/{id}', [\App\Http\Controllers\NewArticleController::class, 'show']);
+Route::get('/newarticle', function ()
+    {
+        if(session()->has('Auth'))
+            if(session()->get('Auth'))
+                return view('M02.aufgabe9');
 
+        return redirect()->route('login');
+    });
+
+/*
+Route::get('/newarticle_', function ()
+    {
+        return view('M02.aufgabe9');
+    })->name('newarticle');
+*/
+
+Route::post('/newarticle_verify',
+    [
+        \App\Http\Controllers\NewArticleController::class,
+        'verify'
+    ])->name('verify');

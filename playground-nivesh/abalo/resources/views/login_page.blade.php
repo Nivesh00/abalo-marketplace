@@ -16,9 +16,13 @@
 
         <tbody>
         <tr>
+            <td>default email: user@email.de</td>
+            <td>password not implemented</td>
+        </tr>
+        <tr>
             <td><label for="email">Emailadresse</label></td>
             <td><input id="email" type="email" name="useremail" required
-                placeholder="e.g. user@email.com"></td>
+                placeholder="e.g. user@email.de"></td>
         </tr>
         <tr>
             <td><label for="pass">Passwort</label></td>
