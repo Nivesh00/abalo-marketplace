@@ -139,4 +139,4 @@ function CookieBox()
 window.onload = () => setTimeout(function ()
 {
     CookieBox();
-}, 1);
+}, 1500);

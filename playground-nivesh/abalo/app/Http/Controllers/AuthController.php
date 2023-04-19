@@ -13,7 +13,7 @@ use function PHPUnit\Framework\isEmpty;
  */
 class AuthController extends Controller
 {
-    /*
+
     public function login(Request $request) {
 
         //$username = $request->input('username');
@@ -43,8 +43,8 @@ class AuthController extends Controller
         else $r["auth"]="false";
         return response()->json($r);
     }
-    */
 
+    /*
     public function verify_login(Request $request)
     {
         $useremail = $request->input('useremail');
@@ -112,4 +112,5 @@ class AuthController extends Controller
         }
         return view('login_page');
     }
+    */
 }

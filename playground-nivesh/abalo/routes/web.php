@@ -22,12 +22,12 @@ Route::get('/testdata', [\App\Http\Controllers\AbTestDataController::class, 'get
 
 // Meilenstein 1 Aufgabe 6
 
-/*
+
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
 Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 Route::get('/isloggedin', [App\Http\Controllers\AuthController::class, 'isloggedin'])->name('haslogin');
-*/
 
+/*
 Route::get('/login', function ()
 {
     return view('login_page');
@@ -51,29 +51,31 @@ Route::get('/check_loggin',
         'check_loggin'
     ])->name('check_loggin');
 
+*/
+
 // Meilenstein 1 Aufgabe 10
 Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'articlesfound']);
 
 // Meilenstein 2 Aufgabe 7
-Route::get('/m02a07', function ()
+Route::get('/navigationsmenue', function ()
 {
-    return view ('M02.aufgabe7');
+    return view ('M02.navigationsmenue');
 });
 
 // Meilenstein 2 Aufgabe 8
-Route::get('/m02a08', function ()
+Route::get('/cookiecheck', function ()
 {
-    return view ('M02.aufgabe8');
+    return view ('M02.cookiecheck');
 });
 
 // Meilenstein 2 Aufgabe 9
 Route::get('/newarticle', function ()
     {
-        if(session()->has('Auth'))
-            if(session()->get('Auth'))
-                return view('M02.aufgabe9');
+        //if(session()->has('Auth'))
+          //  if(session()->get('Auth'))
+                return view('M02.newarticle');
 
-        return redirect()->route('login');
+        //return redirect()->route('login');
     });
 
 /*
