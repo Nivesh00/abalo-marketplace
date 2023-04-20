@@ -2,10 +2,31 @@
 
 function Warenkorb()
 {
+    /*
+    let empty_box = document.createElement('div');
+    empty_box.setAttribute('id', 'empty_box');
+    empty_box.style.height = '100px';
+    document.body.prepend(empty_box);
+    */
+
+    let big_box = document.getElementById('big_container');
+    big_box.style.position = 'fixed';
+    big_box.style.width = '100%';
+
     let korb = document.createElement('div');
     korb.setAttribute('id', 'korb');
 
     let basket = document.getElementById('warenkorb');
+    basket.style.padding = '10px';
+    basket.style.height = '35px';
+    basket.style.backgroundColor = 'red';
+    basket.style.textAlign = 'center';
+    basket.style.borderRadius = '20px';
+    basket.style.minWidth = '80px';
+    basket.style.maxWidth = '150px';
+    basket.style.marginLeft = 'auto';
+    basket.style.marginRight = '10px';
+    basket.style.lineHeight = '2';
 
     korb.style.display = 'none';
     korb.style.height = '200px';
@@ -16,11 +37,14 @@ function Warenkorb()
 
     korb.innerHTML =
 
-        '<div id="items" style="text-align: center; height: 50px; font-weight: bolder; background-color:' +
+        '<div id="items" style="text-align: center; height: 60px; font-weight: bolder;' +
+        ' background-color:' +
         ' lightblue;"></br>In meinem Warenkorb</div>';
 
     basket.addEventListener('mouseover', function ()
     {
+        basket.style.backgroundColor = 'black';
+
         korb.style.display = 'block';
         korb.style.position = 'absolute';
         korb.style.top = '30px';
@@ -33,6 +57,8 @@ function Warenkorb()
 
     basket.addEventListener('mouseout', function ()
     {
+        basket.style.backgroundColor = 'red';
+
         korb.style.display = 'none';
     });
 

@@ -15,6 +15,7 @@
         <div></div>
         <div></div>
         <div id="warenkorb">Mein Warenkorb</div>
+        <div></div>
     </div>
 </header>
     <div id="big_page">
