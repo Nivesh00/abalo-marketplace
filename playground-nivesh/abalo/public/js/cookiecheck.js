@@ -1,5 +1,5 @@
 "use strict";
-
+/*
 function CookieBox()
 {
     let bigger_box = document.createElement('div');
@@ -136,7 +136,213 @@ function CookieBox()
     document.body.append(bigger_box);
 }
 
+
 window.onload = () => setTimeout(function ()
 {
     CookieBox();
 }, 1500);
+*/
+
+const essential = true;
+
+class CookieClass{
+
+    static interest = false;
+    static advertisement = false;
+
+    static description = 'my full description';
+
+    static CookieBox()
+    {
+        document.body.style.fontFamily = 'Bahnschrift, Serif, serif';
+
+        let empty_div = document.createElement('div');
+        empty_div.style.height = '170px';
+
+        let c_box = document.createElement('div');
+        c_box.setAttribute('id', 'c_box');
+
+        c_box.style.backgroundColor = 'lightcyan';
+        c_box.style.display = 'grid';
+        c_box.style.gridTemplateColumns = '300px 300px';
+        c_box.style.width = '600px'
+        c_box.style.height = '400px';
+        //c_box.style.marginLeft = (window.innerWidth - 600) * 0.5 + 'px';
+        c_box.style.columnGap = '0';
+        c_box.style.marginLeft = 'auto';
+        c_box.style.marginRight = 'auto';
+        c_box.style.padding = '20px';
+        c_box.style.borderRadius = '20px';
+
+
+        document.body.append(c_box);
+        document.body.insertBefore(empty_div, c_box);
+    }
+
+
+    static CookieDescription()
+    {
+        let c_box = document.getElementById('c_box');
+
+        let c_description = document.createElement('div');
+        c_description.setAttribute('id', 'c_description');
+
+        c_description.innerText = this.description;
+
+        //c_description.style.w
+
+        c_box.append(c_description);
+
+    }
+
+
+    static CookieChoice()
+    {
+        let c_box = document.getElementById('c_box');
+
+        let c_choice = document.createElement('div');
+        c_choice.setAttribute('id', 'c_choice');
+        c_choice.style.borderLeft = '2px solid lightgrey';
+        c_choice.style.padding = '20px';
+
+        let close_div = document.createElement('div');
+        close_div.setAttribute('id', 'close_div');
+
+        close_div.innerHTML =
+            '<button style="border: none; float: right; padding: 10px; background-color:' +
+            ' lightcyan;"' +
+            ' type="button"' +
+            ' id="close">&#10006;</button>'
+
+        let cross = close_div.getElementsByTagName('button');
+
+        for(let btn of cross)
+        {
+            btn.addEventListener('mouseover', function ()
+            {
+                document.body.style.cursor = 'pointer';
+                close_div.style.background = 'black';
+            })
+            btn.addEventListener('mouseout', function ()
+            {
+                document.body.style.cursor = 'default';
+                close_div.style.background = 'lightcyan';
+            })
+            btn.addEventListener('click', function () {
+                c_box.style.display = 'none';
+            })
+        }
+        //cross.style.border = '1px solid black';
+        //cross.style.backgroundColor = 'lightcyan';
+
+        c_choice.append(close_div);
+
+        let empty_cookie = document.createElement('div');
+        empty_cookie.setAttribute('id', 'empty_cookie');
+        empty_cookie.style.height = '70px';
+
+        c_choice.append(empty_cookie);
+
+        let auswahl = document.createElement('dic');
+        auswahl.setAttribute('id', 'auswahl');
+
+        auswahl.innerHTML =
+            '<table style="width: 250px"><thead><tr><th><th></th></th></tr></thead>'
+            + '<tbody>'
+            + '<tr>'
+            + '<td>Essentielle cookies </br>(immer an)</td>'
+            + '<td class="cb"><input type="checkbox" value="essential=true" checked disabled></td>'
+            + '</tr>'
+
+            + '<tr>'
+            + '<td>Bewerbung cookies</td>'
+            + '<td class="cb"><input id="adv" type="checkbox" value="advertisement=true"></td>'
+            + '</tr>'
+
+            + '<tr>'
+            + '<td>Interesse cookies</td>'
+            + '<td class="cb"><input id="int" type="checkbox" value="interest=true"></td>'
+            + '</tr>'
+
+            + '</tbody>'
+            + '</table>';
+
+        let tr_arr = auswahl.getElementsByTagName('tr');
+        for(let tr of tr_arr)
+        {
+            tr.style.height = '50px';
+
+        }
+
+        let cb_arr = auswahl.getElementsByClassName('cb');
+        for(let cb of cb_arr)
+        {
+           cb.style.lineHeight = '3';
+        }
+
+        let speichern = document.createElement('div');
+        speichern.setAttribute('id', 'speicher');
+        speichern.style.height = '30px';
+        speichern.innerHTML =
+            '<button id="speichern" style="padding: 10px;border-radius: 10px;margin-top:' +
+            ' 50px;width:' +
+            ' 100%;border: 2px' +
+            ' solid' +
+            ' saddlebrown;' +
+            ' background-color:' +
+            ' lightsalmon;' +
+            ' text-align: center"' +
+            ' type="button">Auswahl' +
+            ' speichern</button>'
+
+
+
+        let speichern_btn = speichern.getElementsByTagName('button')[0];
+
+        speichern_btn.addEventListener('mouseover', function ()
+        {
+            document.body.style.cursor = 'pointer';
+        })
+        speichern_btn.addEventListener('mouseout', function ()
+        {
+            document.body.style.cursor = 'initial';
+        })
+        speichern_btn.addEventListener('click', function()
+        {
+            let selection = document.querySelectorAll('input[type=checkbox]:checked');
+            document.cookie = 'essential=true';
+            for(let ckie of selection) {
+                if (ckie.value === 'advertisement=true') {
+                    CookieClass.advertisement = true;
+                    document.cookie = 'advertisement=true';
+                }
+                if (ckie.value === 'interest=true')
+                {
+                    CookieClass.interest = true;
+                    document.cookie = 'interest=true';
+                }
+            }
+
+            c_box.style.display = 'none';
+        })
+
+        c_choice.append(auswahl);
+
+        c_choice.append(speichern);
+
+        c_box.append(c_choice);
+    }
+
+
+    static CreateCookiePopUp()
+    {
+        this.CookieBox();
+        this.CookieDescription();
+        this.CookieChoice();
+    }
+}
+
+window.onload = function ()
+{
+    CookieClass.CreateCookiePopUp();
+}
