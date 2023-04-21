@@ -7,15 +7,20 @@
     <title>Aufgabe 9</title>
 </head>
 <body>
+
+<div id="big_box">
 @if(isset($status))
     @if($status)
-        <div>Daten wurden gespeichert!</div>
+        <div id="right_msg">Daten wurden gespeichert!</div>
     @else
-        <div>Daten sind falsch oder Name existiert bereits! Bitte erneut versuchen.</div>
+        <div id="wrong_msg">Daten sind falsch! Bitte erneut versuchen
+            .</div>
     @endif
 @endif
-<form id="my_form">
+<form id="my_form" style="width: 100%;">
     @csrf
 </form>
+    <div id="add_content"></div>
+</div>
 </body>
 </html>
