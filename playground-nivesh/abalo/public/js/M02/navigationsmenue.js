@@ -13,11 +13,21 @@ class NavMenu
 
             '<ul id="sections">' +
                 '<li class="main_item"><a href="#" target="_self">Home</a></li>' +
-                '<li class="main_item"><a href="#" target="_self">Kategorie</a></li>' +
+                '<li class="main_item parent_item_0"><a href="#"' +
+            ' target="_self">Kategorie&#9660;</a>' +
+                    '<ul class="subsections">' +
+                    '<li class="sub_item"><a class="sub_link" href="#"' +
+                    ' target="_self">Auto</a></li>' +
+                    '<li class="sub_item"><a class="sub_link" href="#"' +
+                    ' target="_self">Elektronik</a></li>' +
+                    '<li class="sub_item"><a class="sub_link" href="#"' +
+                    ' target="_self">Immobilien</a></li>' +
+                    '</ul>' +
+                '</li>' +
                 '<li class="main_item"><a href="#" target="_self">Verkaufen</a></li>' +
                 '<li class="main_item parent_item_0" id="untnehm"><a href="#"' +
             ' target="_self">Unternehmen&#9660;</a>' +
-                    '<ul id="subsections">' +
+                    '<ul class="subsections">' +
                     '<li class="sub_item"><a class="sub_link" href="#"' +
             ' target="_self">Philosophie</a></li>' +
                     '<li class="sub_item"><a class="sub_link" href="#"' +
@@ -26,9 +36,9 @@ class NavMenu
                 '</li>' +
             '</ul>';
 
-        this.new_NavMenu_css();
-
         document.body.append(this.big_box);
+
+        this.new_NavMenu_css();
 
         for(let i = 0; i < 10; i++)
         {
@@ -55,7 +65,7 @@ class NavMenu
             ul.style.display = 'flex';
             ul.style.justifyContent = 'space-between';
 
-            if(ul.id === 'subsections')
+            if(ul.className === 'subsections')
             {
                 ul.style.listStyleType = 'square';
                 ul.style.display = 'block';
@@ -89,6 +99,7 @@ class NavMenu
         }
 
 
+        /*
         let li_arr = this.big_box.getElementsByTagName('li');
         for(let li of li_arr)
         {
@@ -132,6 +143,73 @@ class NavMenu
             }
         }
 
+         */
+
+        let listings = document.getElementById('sections');
+
+        let li_arr = NavMenu.big_box.getElementsByTagName('li');
+        for(let li of li_arr)
+        {
+            if (li.className.indexOf('parent_item_0') > 0)
+            {
+                let child_li_arr = li.getElementsByClassName('sub_item');
+                for (let child_li of child_li_arr)
+                {
+                    child_li.style.display = 'none';
+                }
+
+            }
+        }
+
+        listings.addEventListener('mouseover', function()
+        {
+
+            let li_arr = NavMenu.big_box.getElementsByTagName('li');
+            for(let li of li_arr)
+            {
+                if(li.className.indexOf('parent_item_0') > 0)
+                {
+                    let child_li_arr = li.getElementsByClassName('sub_item');
+
+                    for(let child_li of child_li_arr)
+                    {
+
+                        //child_li.style.position = 'absolute';
+                        child_li.style.display = 'list-item';
+                        child_li.style.listStyleType = 'square';
+                        child_li.style.marginTop = '15px';
+                        child_li.style.fontSize = 'smaller';
+                    }
+
+                    listings.addEventListener('mouseout', function()
+                    {
+                        for(let child_li of child_li_arr)
+                        {
+                            child_li.style.display = 'none';
+                            empty_div.style.height = '80px';
+                        }
+                    })
+
+                }
+
+                li.style.paddingLeft = '2%';
+                li.style.paddingRight = '2%';
+                /*
+                if(li.className === 'sub_item')
+                {
+                    li.style.display = 'none';
+                    //li.style.display = 'block';
+
+                }
+                else
+                {
+                    li.style.paddingLeft = '2%';
+                    li.style.paddingRight = '2%';
+                }
+
+                 */
+            }
+        });
 
         let expand = document.createElement('div');
         expand.setAttribute('id', 'expand');
@@ -159,7 +237,10 @@ class NavMenu
                 expand.innerText = 'Menü einblenden';
                 expand.style.padding = '0';
                 expand.style.width = '100%';
-                expand.style.position = 'absolute';
+                expand.style.position = 'fixed';
+                expand.style.top = '0';
+                expand.style.left = '0';
+                expand.style.right = '0';
                 expand.style.backgroundColor = 'darkgrey';
 
                 document.body.append(expand);
@@ -184,6 +265,7 @@ class NavMenu
         empty_div.style.width = '100%';
         empty_div.style.height = '80px';
         this.big_box.append(expand);
+
 
         document.body.append(empty_div);
     }
