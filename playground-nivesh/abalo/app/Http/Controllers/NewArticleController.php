@@ -10,23 +10,27 @@ class NewArticleController extends Controller
     //
     function verify(Request $request)
     {
-        $name = $request->input('name');
-        $price = $request->input('price');
-        $description = $request->input('description');
-        if(strlen($description) <= 0) $description = 'no description';
+        //$name = $request->input('name');
+        //$price = $request->input('price');
 
+        /*
+        if($request->ajax()) dd($request->all());
+        $name = $request->post('name');
+        $price = $request->post('price');
+        $description = $request->get('description');
+        if(strlen($description) <= 0) $description = 'no description';
+        */
+
+        $data = $request->all();
+        $name = $data['name'];
+        $price = $data['price'];
+        $description = $data['description'] ;
+
+        if($description === null) $description = 'keine Beschreibung';
 
         $ok = 0;
         if(strlen($name) > 0 && $price > 0)
             $ok = 1;
-
-        /*
-        $rslt = DB::table('ab_article')->select()->where('ab_name', '=', $name)
-            ->get()->toArray();
-
-        if(!sizeof($rslt))
-            $ok = 1;
-        */
 
         if($ok)
         {
@@ -39,15 +43,10 @@ class NewArticleController extends Controller
                     'ab_createdate' => now()
                 ]);
 
-            return view('M02.newarticle',
-            [
-                'status' => true
-            ]);
+            return response()->json(['myMessage', 'ok!!']);
         }
 
-        return view('M02.newarticle',
-            [
-                'status' => false
-            ]);
+        return response()->json(['myMessage', 'not_ok!!']);
+
     }
 }

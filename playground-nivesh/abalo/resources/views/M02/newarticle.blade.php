@@ -9,14 +9,7 @@
 <body>
 
 <div id="big_box">
-@if(isset($status))
-    @if($status)
-        <div id="right_msg">Daten wurden gespeichert!</div>
-    @else
-        <div id="wrong_msg">Daten sind falsch! Bitte erneut versuchen
-            .</div>
-    @endif
-@endif
+        <div id="right_msg"></div>
 <form id="my_form" style="width: 100%;">
     @csrf
 </form>

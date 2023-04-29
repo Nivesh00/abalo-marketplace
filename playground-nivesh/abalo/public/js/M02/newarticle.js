@@ -39,6 +39,9 @@ function NewArticle()
         '</tbody>' +
         '</table>';
 
+    let message_db = document.getElementById('right_msg');
+    message_db.style.display = 'none';
+
     let wrong_name = document.createElement('div');
     wrong_name.setAttribute('id', 'wrong_name');
     wrong_name.style.display = 'none';
@@ -56,6 +59,7 @@ function NewArticle()
     submit_btn.addEventListener('click', function (event) {
         let name_akl = document.getElementById('name').value.trim();
         let price_akl = document.getElementById('price').value.trim();
+        let descr = document.getElementById('description').value.trim();
 
         wrong_name.style.display = 'none';
         if(document.getElementById('right_msg') != null)
@@ -67,6 +71,7 @@ function NewArticle()
         {
 
             wrong_name.innerText = 'Name und Preis sind falsch oder ungültig!';
+            wrong_name.style.backgroundColor = 'crimson';
             setTimeout(function()
             {
                 wrong_name.style.display = 'block';
@@ -76,6 +81,7 @@ function NewArticle()
         else if (name_akl.length <= 0)
         {
             wrong_name.innerText = 'Name ist falsch oder ungültig';
+            wrong_name.style.backgroundColor = 'crimson';
             setTimeout(function()
             {
                 wrong_name.style.display = 'block';
@@ -85,6 +91,7 @@ function NewArticle()
         else if (price_akl <= 0)
         {
             wrong_name.innerText = 'Preis ist falsch oder ungültig!';
+            wrong_name.style.backgroundColor = 'crimson';
             setTimeout(function()
             {
                 wrong_name.style.display = 'block';
@@ -92,9 +99,45 @@ function NewArticle()
             event.preventDefault();
         }
         else
-            document.getElementById('article_form').submit();
+        {
+            //document.getElementById('article_form').submit();
 
-        console.log(name_akl, price_akl);
+            event.preventDefault();
+            let post_data =
+                {
+                    'name': name_akl,
+                    'price': price_akl,
+                    'description': descr
+                }
+            let csrf = document.getElementsByTagName('meta')[1]['content'];
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', '/newarticle_verify');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('X-CSRF-TOKEN', csrf);
+            xhr.send(JSON.stringify(post_data));
+            //xhr.getResponseHeader();
+
+            xhr.onreadystatechange = ()=>
+            {
+                if(xhr.readyState === 4)
+                {
+                    if (xhr.status === 200)
+                    {
+                        wrong_name.innerText = 'Daten gespeichert!';
+                        wrong_name.style.backgroundColor = 'green';
+                        wrong_name.style.display = 'block';
+                    }
+                    else
+                    {
+                        wrong_name.innerText = 'Daten nicht gespeichert. Bitte nochmal versuchen!';
+                        wrong_name.style.backgroundColor = 'crimson';
+                        wrong_name.style.display = 'block';                    }
+                }
+            }
+
+
+        }
+
     });
 
 
