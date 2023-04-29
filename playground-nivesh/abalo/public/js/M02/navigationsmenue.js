@@ -3,40 +3,82 @@
 
 class NavMenu
 {
+
+    static data =
+    {
+        Home: '',
+        Kategorie:
+            {
+                Auto: {},
+                Elektronik: {},
+                Immobilien: {}
+            },
+        Verkaufen: '',
+        Unternehmen:
+            {
+                Philosophie: {},
+                Karriere: {}
+            }
+    }
+
     static big_box = document.createElement('div');
+
+    static data_to_list()
+    {
+        let box = document.createElement('ul');
+        box.setAttribute('id', 'sections');
+
+        for(let cat in this.data)
+        {
+            let list_item = document.createElement('li');
+            list_item.setAttribute('class', 'main_item');
+
+            let link_item = document.createElement('a');
+            link_item.setAttribute('href', '#');
+            link_item.setAttribute('target', '_self');
+            link_item.innerText = cat;
+            list_item.append(link_item);
+            console.log(this.data[cat]);
+            if(this.data[cat] !== '')
+            {
+                list_item.setAttribute('class', 'main_item parent_item_0');
+                list_item.innerHTML = list_item.innerHTML + '&#9660;';
+                let inner_box = document.createElement('ul');
+                inner_box.setAttribute('class', 'subsections');
+
+                for (let subcat in this.data[cat])
+                {
+                    let list_item_inner = document.createElement('li');
+                    list_item_inner.setAttribute('class', 'sub_item');
+
+                    let link_item_inner = document.createElement('a');
+                    link_item_inner.setAttribute('class', 'sub_link');
+                    link_item_inner.setAttribute('href', '#');
+                    link_item_inner.setAttribute('target', '_self');
+                    link_item_inner.innerText = subcat;
+
+                    list_item_inner.append(link_item_inner);
+                    inner_box.append(list_item_inner);
+                    list_item.append(inner_box);
+                }
+            }
+
+            box.append(list_item);
+        }
+
+        return box;
+
+    }
 
     static new_NavMenu()
     {
+        let form_box = this.data_to_list();
+
         this.big_box.setAttribute('id', 'big_box');
 
-        this.big_box.innerHTML =
-
-            '<ul id="sections">' +
-                '<li class="main_item"><a href="#" target="_self">Home</a></li>' +
-                '<li class="main_item parent_item_0"><a href="#"' +
-            ' target="_self">Kategorie&#9660;</a>' +
-                    '<ul class="subsections">' +
-                    '<li class="sub_item"><a class="sub_link" href="#"' +
-                    ' target="_self">Auto</a></li>' +
-                    '<li class="sub_item"><a class="sub_link" href="#"' +
-                    ' target="_self">Elektronik</a></li>' +
-                    '<li class="sub_item"><a class="sub_link" href="#"' +
-                    ' target="_self">Immobilien</a></li>' +
-                    '</ul>' +
-                '</li>' +
-                '<li class="main_item"><a href="#" target="_self">Verkaufen</a></li>' +
-                '<li class="main_item parent_item_0" id="untnehm"><a href="#"' +
-            ' target="_self">Unternehmen&#9660;</a>' +
-                    '<ul class="subsections">' +
-                    '<li class="sub_item"><a class="sub_link" href="#"' +
-            ' target="_self">Philosophie</a></li>' +
-                    '<li class="sub_item"><a class="sub_link" href="#"' +
-            ' target="_self">Karriere</a></li>' +
-                    '</ul>' +
-                '</li>' +
-            '</ul>';
-
+        this.big_box.append(form_box);
         document.body.append(this.big_box);
+        console.log(this.big_box.innerHTML);
 
         this.new_NavMenu_css();
 
@@ -97,54 +139,6 @@ class NavMenu
                 a.style.backgroundColor = 'initial';
             })
         }
-
-
-        /*
-        let li_arr = this.big_box.getElementsByTagName('li');
-        for(let li of li_arr)
-        {
-            if(li.className.indexOf('parent_item_0') > 0)
-            {
-                let child_li_arr = li.getElementsByClassName('sub_item');
-
-                li.addEventListener('mouseover', function()
-                {
-                    for(let child_li of child_li_arr)
-                    {
-
-                        //child_li.style.position = 'absolute';
-                        child_li.style.display = 'list-item';
-                        child_li.style.listStyleType = 'square';
-                        child_li.style.marginTop = '15px';
-                        child_li.style.fontSize = 'smaller';
-                    }
-                });
-
-
-                li.addEventListener('mouseout', function()
-                {
-                    for(let child_li of child_li_arr)
-                    {
-                        child_li.style.display = 'none';
-                        empty_div.style.height = '80px';
-                    }
-                })
-            }
-            if(li.className === 'sub_item')
-            {
-                li.style.display = 'none';
-                //li.style.display = 'block';
-
-            }
-            else
-            {
-                li.style.paddingLeft = '2%';
-                li.style.paddingRight = '2%';
-            }
-        }
-
-         */
-
         let listings = document.getElementById('sections');
 
         let li_arr = NavMenu.big_box.getElementsByTagName('li');
@@ -194,20 +188,6 @@ class NavMenu
 
                 li.style.paddingLeft = '2%';
                 li.style.paddingRight = '2%';
-                /*
-                if(li.className === 'sub_item')
-                {
-                    li.style.display = 'none';
-                    //li.style.display = 'block';
-
-                }
-                else
-                {
-                    li.style.paddingLeft = '2%';
-                    li.style.paddingRight = '2%';
-                }
-
-                 */
             }
         });
 
@@ -226,8 +206,6 @@ class NavMenu
         expand.style.right = '0';
         expand.style.fontFamily = 'Bahnschrift, serif';
         expand.style.cursor = 'pointer';
-        //expand.style.borderBottomLeftRadius = '60px';
-        //expand.style.borderBottomRightRadius = '60px';
         expand.addEventListener('click', function (event)
         {
             if(expand.innerText === 'Menü ausblenden')
