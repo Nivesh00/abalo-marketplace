@@ -259,7 +259,6 @@ class CookieClass{
             })
             btn.addEventListener('click', function () {
                 c_box.style.display = 'none';
-                document.cookie = 'essential=true';
 
             })
         }
@@ -284,7 +283,7 @@ class CookieClass{
             + '<tbody>'
             + '<tr>'
             + '<td>Essentielle Cookies </br>(immer an)</td>'
-            + '<td class="cb"><input type="checkbox" value="essential=true" checked disabled></td>'
+            + '<td class="cb"><input type="checkbox" value="essential=true"></td>'
             + '</tr>'
 
             + '<tr>'

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Aufgabe 1</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    "use strict"
+    let data = "";
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '../abalo/public/static/message.json');
+    xhr.send();
+
+    xhr.onreadystatechange = () =>
+    {
+        if (xhr.readyState === 4)
+            if (xhr.status === 200) {
+                data = JSON.parse(xhr.responseText);
+
+                let message = document.createElement('div');
+                message.innerText = data['message'];
+                document.body.append(message);
+            }
+    }
+
+
+    console.log(xhr);
+</script>
+
+</html>
