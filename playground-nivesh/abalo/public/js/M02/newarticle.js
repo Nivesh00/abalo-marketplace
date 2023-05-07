@@ -109,7 +109,8 @@ function NewArticle()
                     'price': price_akl,
                     'description': descr
                 }
-            let csrf = document.getElementsByTagName('meta')[1]['content'];
+            //let csrf = document.getElementsByTagName('meta')[1]['content'];
+            let csrf = document.getElementById('csrf_id')['content'];
             let xhr = new XMLHttpRequest();
             xhr.open('POST', '/newarticle_verify');
             xhr.setRequestHeader('Content-Type', 'application/json');
