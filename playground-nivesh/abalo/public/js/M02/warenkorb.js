@@ -88,6 +88,8 @@ function Warenkorb()
                 {
                     if(add_btn.innerText === '+')
                     {
+                        cartAction(add_btn.value, "add");
+
                         add_btn.innerText = '-';
                         item_list.push(add_btn.value);
 
@@ -116,6 +118,7 @@ function Warenkorb()
                     }
                     else
                     {
+                        cartAction(add_btn.value, "remove");
                         add_btn.innerText = '+';
                         let index = item_list.indexOf(add_btn.value);
                         if (index > -1)
@@ -139,10 +142,31 @@ function Warenkorb()
     let adds = document.querySelectorAll('[id="btn"]');
 
 
-
-
-
     basket.append(korb);
+}
+
+function cartAction(article, action)
+{
+    let xhttp = new XMLHttpRequest();
+    let csrf_token = document.getElementById('X-CSRF-TOKEN').getAttribute('content');
+    let body_json =
+        {
+            "article":article,
+            "action":action
+        }
+
+
+    xhttp.open('POST', '/api/cartAction');
+    xhttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    xhttp.setRequestHeader("Accept", "application/json");
+    xhttp.setRequestHeader("X-CSRF-TOKEN", csrf_token);
+    xhttp.send(JSON.stringify(body_json));
+
+    xhttp.onreadystatechange = () =>
+    {
+        if(xhttp.readyState === 4)
+            console.log(xhttp);
+    }
 }
 
 window.onload = () => Warenkorb();

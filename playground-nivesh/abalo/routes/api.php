@@ -30,3 +30,10 @@ Route::post(
         \App\Http\Controllers\NewArticleController::class, 'addArticle_api'
     ]
 );
+
+Route::post(
+    'cartAction',
+    [
+        \App\Http\Controllers\WarenkorbController::class, 'cartAction'
+    ]
+);
