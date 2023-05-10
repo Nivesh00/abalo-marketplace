@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function MongoDB\BSON\toJSON;
 
 class ArticleController extends Controller
 {
@@ -22,5 +23,16 @@ class ArticleController extends Controller
             [
                 'myResult' => $myResult
             ]);
+    }
+
+    function getArticles_api($name)
+    {
+        $myResult = DB::table('ab_article')->select()
+            ->where('ab_name', 'ilike', '%' . $name . '%' )
+            ->get()->toArray();
+
+        //$JSON_response = toJSON($myResult);
+
+        return response()->json($myResult);
     }
 }
