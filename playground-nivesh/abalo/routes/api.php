@@ -22,3 +22,11 @@ Route::get('/articles/{name}',
             [
                \App\Http\Controllers\ArticleController::class, 'getArticles_api'
             ]);
+
+Route::post(
+    'articles',
+
+    [
+        \App\Http\Controllers\NewArticleController::class, 'addArticle_api'
+    ]
+);
