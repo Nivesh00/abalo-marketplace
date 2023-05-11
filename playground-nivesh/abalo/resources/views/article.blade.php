@@ -19,11 +19,13 @@
 
 <div id="mybody">
     @if(empty($myResult))
+        <div id="no_res">
+        <div id="no_msg">Kein Artikel gefunden!
+            Bitte versuchen Sie erneut.</div>
+            {{--}}
         <img src="{{ '../storage/image_folder/Images_misc/no_result.jpg' }}"
-             alt="Leeres Paket">
-        <br/>
-        Kein Artikel gefunden!
-        Bitte versuchen Sie erneut.
+             alt="Leeres Paket"> {{--}}
+        </div>
     @else
         <table id="my_table">
             <caption><h1>Artikelübersicht</h1></caption>

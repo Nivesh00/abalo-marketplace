@@ -77,6 +77,29 @@ th + th
     max-width: 400px;
 }
 
+#no_res
+{
+    /*
+    margin-left: auto;
+    margin-right: auto;*/
+    background-image: url("https://cdn.pixabay.com/photo/2020/08/25/11/38/cartoon-box-5516523_1280.png");
+    background-size: 200px 150px;
+    background-repeat: repeat;
+    background-color: rosybrown;
+    height: 500px;
+}
+
+#no_msg
+{
+    font-size: larger;
+    margin-top: 200px;
+    padding-bottom: 50px;
+    color: red;
+    text-align: center;
+    background-color: white;
+    text-decoration-line: underline;
+}
+
 td + td
 {
     text-align: center;
