@@ -141,22 +141,19 @@ function populateCart()
 
 
             if(!myArr.hasOwnProperty('message_empty'))
-                for (let key in myArr)
-                {
+                for (let key in myArr) {
                     let div = document.createElement('div');
                     div.setAttribute('name', myArr[key]['id']);
                     div.innerText = myArr[key]['ab_name'];
                     div.style.textAlign = 'left';
                     div.style.padding = '20px';
 
-                    div.addEventListener('mouseover', ()=>
-                    {
+                    div.addEventListener('mouseover', () => {
                         div.style.backgroundColor = 'white';
                         div.style.cursor = 'pointer';
 
                     });
-                    div.addEventListener('mouseout', ()=>
-                    {
+                    div.addEventListener('mouseout', () => {
                         div.style.backgroundColor = 'lightgrey';
                         div.style.cursor = 'initial';
                     })
@@ -167,15 +164,13 @@ function populateCart()
                     link.style.color = 'lightsalmon';
                     link.style.float = 'right';
 
-                    link.addEventListener('click', (event) =>
-                    {
+                    link.addEventListener('click', (event) => {
                         event.preventDefault();
                         let mydiv = document.getElementById(myArr[key]['id']).childNodes[0].childNodes;
                         console.log(mydiv);
-                        for(let btn of mydiv)
-                        {
+                        for (let btn of mydiv) {
 
-                            if(btn.style.backgroundColor === 'lightgrey')
+                            if (btn.style.backgroundColor === 'lightgrey')
                                 btn.style.backgroundColor = 'lawngreen';
                             else
                                 btn.style.backgroundColor = 'lightgrey';
@@ -184,26 +179,25 @@ function populateCart()
                         removeFromCart(myArr[key]['id']);
                     });
 
-                    link.addEventListener('mouseover', () =>
-                    {
+                    link.addEventListener('mouseover', () => {
                         link.style.textDecorationLine = 'underline';
                     })
-                    link.addEventListener('mouseout', () =>
-                    {
+                    link.addEventListener('mouseout', () => {
                         link.style.textDecorationLine = 'none';
                     })
 
-
-                    let btn_cnt = document.getElementById(myArr[key]['id']).childNodes[0].childNodes;
-                    for(let btn of btn_cnt)
+                    if (document.getElementById(myArr[key]['id']) !== null)
                     {
-                        if (btn.getAttribute('class') === 'add_btn')
-                            btn.style.backgroundColor = 'lightgrey';
-                        else
-                            btn.style.backgroundColor = 'crimson';
+                        let btn_cnt = document.getElementById(myArr[key]['id']).childNodes[0].childNodes;
 
+                        for (let btn of btn_cnt) {
+                            if (btn.getAttribute('class') === 'add_btn')
+                                btn.style.backgroundColor = 'lightgrey';
+                            else
+                                btn.style.backgroundColor = 'crimson';
+
+                        }
                     }
-
                     div.append(link);
                     cart.append(div);
 
