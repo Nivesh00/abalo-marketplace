@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::get('/articles/{name}',
             [
                \App\Http\Controllers\ArticleController::class, 'getArticles_api'
@@ -31,9 +32,20 @@ Route::post(
     ]
 );
 
-Route::post(
-    'cartAction',
+Route::get('/shoppingcart/{id}',
     [
-        \App\Http\Controllers\WarenkorbController::class, 'cartAction'
+        \App\Http\Controllers\WarenkorbController::class, 'getCart_api'
+    ]);
+
+Route::post(
+    'shoppingcart',
+    [
+        \App\Http\Controllers\WarenkorbController::class, 'addToCart_api'
+    ]
+);
+
+Route::delete('shoppingcart/{user_id}/articles/{article_id}',
+    [
+        \App\Http\Controllers\WarenkorbController::class, 'removeFromCart_api'
     ]
 );

@@ -6,10 +6,29 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDO;
 use function MongoDB\BSON\toJSON;
+use function PHPUnit\Framework\isEmpty;
 
 class WarenkorbController extends Controller
 {
-    //
+
+    function getCart_api($id)
+    {
+        $id = DB::table('ab_shoppingcart')->get()->where('ab_creator_id', '=', $id)->toArray();
+
+        if(!count($id))
+            return response()->json(['message_empty' => 'no cart']);
+
+
+        $articles = DB::table('ab_shoppingcart_item')
+            ->where('ab_shoppingcart_id', '=', $id[0]->id)
+            ->join('ab_article', 'ab_shoppingcart_item.ab_article_id', '=', 'ab_article.id')
+            ->select('ab_shoppingcart_item.ab_shoppingcart_id', 'ab_article.ab_name', 'ab_article.id')
+            ->get()->toArray();
+
+        return response()->json($articles);
+
+    }
+
     function cartAction(Request $request)
     {
 
@@ -27,8 +46,10 @@ class WarenkorbController extends Controller
 
     }
 
-    function addToCart($article_id)
+    function addToCart_api(Request $request)
     {
+        $article_id = $request->post('id');
+
         $warenkorb_arr = DB::table('ab_shoppingcart')->get()->
         where('ab_creator_id', '=', '1')->toArray(); //user id
 
@@ -57,19 +78,23 @@ class WarenkorbController extends Controller
                 'ab_createdate' => now()
             ]);
 
-        return response()->json(['message' => 'added']);
+        return response()->json(
+            [
+                'message' => 'added',
+                'ab_shoppingcart_id' => $sp_id
+            ]);
     }
 
-    function removeFromCart($article_id)
+    function removeFromCart_api($user_id, $article_id)
     {
         DB::table('ab_shoppingcart_item')->where('ab_article_id', '=', $article_id)->delete();
 
         $count = DB::table('ab_shoppingcart_item')->get()->toArray();
 
-        if(sizeof($count) == 0)
-            DB::table('ab_shoppingcart')->where('ab_creator_id', '=', 1)->delete();
+        if(!count($count))
+            DB::table('ab_shoppingcart')->where('ab_creator_id', '=', $user_id)->delete();
 
-        return response()->json(['message' => 'removed']);
+        return response()->json(['message' => 'removed', 'cnt' => $count]);
 
     }
 }
