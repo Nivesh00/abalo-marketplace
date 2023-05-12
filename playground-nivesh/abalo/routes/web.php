@@ -59,13 +59,13 @@ Route::get('/articles', [App\Http\Controllers\ArticleController::class, 'article
 // Meilenstein 2 Aufgabe 7
 Route::get('/navigationsmenue', function ()
 {
-    return view ('M02.navigationsmenue');
+    return view ('navigationsmenue');
 });
 
 // Meilenstein 2 Aufgabe 8
 Route::get('/cookiecheck', function ()
 {
-    return view ('M02.cookiecheck');
+    return view ('cookiecheck');
 });
 
 // Meilenstein 2 Aufgabe 9
@@ -73,7 +73,7 @@ Route::get('/newarticle', function ()
     {
         //if(session()->has('Auth'))
           //  if(session()->get('Auth'))
-                return view('M02.newarticle');
+                return view('newarticle');
 
         //return redirect()->route('login');
     });

@@ -45,10 +45,10 @@ class NewArticleController extends Controller
                     'ab_createdate' => now()
                 ]);
 
-            return response()->json(['myMessage', 'ok!!']);
+            return response()->json(['myMessage' => 'ok!!']);
         }
 
-        return response()->json(['myMessage', 'not_ok!!']);
+        return response()->json(['myMessage' => 'not_ok!!']);
 
     }
 

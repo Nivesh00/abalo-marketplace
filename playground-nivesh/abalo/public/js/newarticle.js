@@ -122,15 +122,18 @@ function NewArticle()
             {
                 if(xhr.readyState === 4)
                 {
+                    let msg = JSON.parse(xhr.responseText);
                     if (xhr.status === 200)
                     {
-                        wrong_name.innerText = 'Daten gespeichert!';
+
+                        wrong_name.innerText = 'Daten gespeichert! MSG:' + msg['myMessage'];
                         wrong_name.style.backgroundColor = 'green';
                         wrong_name.style.display = 'block';
                     }
                     else
                     {
-                        wrong_name.innerText = 'Daten nicht gespeichert. Bitte nochmal versuchen!';
+                        wrong_name.innerText = 'Daten nicht gespeichert. Bitte nochmal' +
+                            ' versuchen! MSG:' + msg['myMessage'];
                         wrong_name.style.backgroundColor = 'crimson';
                         wrong_name.style.display = 'block';                    }
                 }
