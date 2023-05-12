@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta id="csrf_id" name="csrf-token" content="{{ csrf_token() }}" />
-    <script src="{{ asset('js/M02/newarticle.js') }}"></script>
+    <script src="{{ asset('js/newarticle.js') }}"></script>
     <title>Aufgabe 9</title>
 </head>
 <body>
