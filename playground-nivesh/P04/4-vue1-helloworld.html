@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../abalo/public/js/vue.js"></script>
+    <title>Aufgabe 2 (a)</title>
+</head>
+<body>
+
+<div id="hello-world">
+    {{ msg }}
+</div>
+
+<br/>
+
+<table id="table-1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Preis</th>
+        <th><button @click="toggle_add">Show/Hide Radio</button></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="item of all_items" :key="item.id">
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+    </tr>
+    </tbody>
+</table>
+
+<br/>
+
+<div id="server-down">
+    <div v-if="serverdown">Der Webserver ist zurzeit nicht erreichbar</div>
+</div>
+
+<br/>
+
+<div id="input-1">
+    <input v-model="input_current" id="input-1-label" type="text" placeholder="text">
+    <div>{{ input_current }}</div>
+</div>
+
+<br/>
+
+<div id="html-format">
+    <div v-html="html_data"></div>
+</div>
+
+<br/>
+
+<div id="counter_div">
+    <button @click="increment_counter">Counter Inkrementieren</button>
+    <b>{{counter}}</b>
+</div>
+
+<script>
+    'use strict';
+
+
+    let appdata =
+        {
+            msg: 'Hello World Vue'
+        };
+
+    let hello_world = Vue.createApp({
+        data(){ return appdata; }
+    }).mount('#hello-world');
+
+
+
+
+    let items =
+        [
+            {id:1, name:'Reifen', price:8290},
+            {id:2, name:'Antenne drehbar. Leicht geknickt', price:1400},
+            {id:3, name:'Opel Kadett C 1992 - wie neu', price:150000}
+        ]
+
+    function toggle_add() {
+        let new_data = {id: 4, name: 'Radio UKW', price: 450};
+        if (!data.item_toggled)
+        {
+            items.push(new_data);
+            data.item_toggled = true;
+        } else
+        {
+            items.pop();
+            data.item_toggled = false;
+        }
+        console.log(items)
+    }
+
+    let data =
+        {
+            all_items: items,
+            item_toggled: false
+        };
+
+    let table_1 = Vue.createApp({
+        data(){ return data; },
+        methods:
+        {
+            toggle_add() {
+                let new_data = {id: 4, name: 'Radio UKW', price: 450};
+                if (!this.$data.item_toggled)
+                {
+                    this.$data.all_items.push(new_data);
+                    data.item_toggled = true;
+                } else
+                {
+                    this.$data.all_items.pop();
+                    data.item_toggled = false;
+                }
+            }
+        }
+    }).mount('#table-1');
+
+
+
+    let server_down = Vue.createApp({
+        data(){return{
+
+            serverdown: false
+            };}
+    }).mount('#server-down');
+
+
+
+
+    let input_1 = Vue.createApp({
+        data(){ return{
+            input_current: null
+        }}
+    }).mount('#input-1')
+
+
+
+    let html_format = Vue.createApp({
+        data(){ return {
+            html_data: '<b>Vielen Dank</b>, für Ihren Einkauf bei <i>Abalo</i>'
+        };}
+    }).mount('#html-format');
+
+
+
+    let counter_div = Vue.createApp({
+        data(){ return { counter: 0}},
+        methods: {
+            increment_counter(){
+                this.$data.counter++;
+            }
+        }
+    }).mount('#counter_div');
+
+</script>
+
+</body>
+</html>
