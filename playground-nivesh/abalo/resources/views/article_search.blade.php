@@ -70,7 +70,8 @@
         methods:{
             update_data(){
 
-                if(this.$data.current_input === '' || this.$data.current_input.length < 3) {
+                if(this.$data.current_input === null || this.$data.current_input === ''
+                || this.$data.current_input.length < 3) {
                     this.$data.current_data = null;
                     return;
                 }
@@ -104,7 +105,6 @@
             }
         }
     }).mount('#big-container')
-
 
 
     let get_categories = setInterval(function(){
