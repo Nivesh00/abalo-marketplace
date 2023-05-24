@@ -68,6 +68,10 @@ img{
     border-bottom: 1px solid black;
 }
 
+.article-item:hover{
+    background-color: darkgrey;
+}
+
 .item-category{
     color: grey;
 }
