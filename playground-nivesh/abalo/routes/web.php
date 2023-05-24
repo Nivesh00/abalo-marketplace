@@ -95,3 +95,7 @@ Route::post('/newarticle_verify',
 Route::get('search', function (){
         return view('article_search');
     });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
