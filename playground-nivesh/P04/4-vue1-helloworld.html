@@ -51,8 +51,9 @@
 <br/>
 
 <div id="counter_div">
-    <button @click="increment_counter">Counter Inkrementieren</button>
-    <b>{{counter}}</b>
+    <button @click="decrement_counter">-</button>
+    <b>&nbsp;{{counter}}&nbsp;</b>
+    <button @click="increment_counter">+</button>
 </div>
 
 <script>
@@ -148,6 +149,9 @@
     let counter_div = Vue.createApp({
         data(){ return { counter: 0}},
         methods: {
+            decrement_counter(){
+                this.$data.counter--;
+            },
             increment_counter(){
                 this.$data.counter++;
             }
