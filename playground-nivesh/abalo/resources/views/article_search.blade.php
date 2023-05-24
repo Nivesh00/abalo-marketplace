@@ -11,7 +11,7 @@
 <div id="big-container">
     <div id="category">
         <select @change="update_data" v-model="current_category" name="article-category">
-            <option selected value="null">Keine Kategorie</option>
+            <option selected value="*">Keine Kategorie</option>
             <option v-for="category in categories" :value="category" :key="category.id">
                 @{{category}}</option>
         </select>
@@ -64,7 +64,7 @@
                 current_data: null,
                 current_input: null,
                 categories: all_categories,
-                current_category: null
+                current_category: '*'
             };
         },
         methods:{
