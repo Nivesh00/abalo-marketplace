@@ -39,12 +39,13 @@ img{
     margin-right: auto;
     margin-left: auto;
     border: 0;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid darkgray;
     background-color: lightgrey;
 }
 
-#search-article:focus{
+#search-article:focus, #search-article:hover{
     outline: none;
+    border-bottom: 2px solid black;
 }
 
 #results{
@@ -89,6 +90,7 @@ select{
     width: 100%;
     height: 44px;
     border: 0;
+    border-bottom: 2px solid darkgray;
     background-color: lightgrey;
 }
 
