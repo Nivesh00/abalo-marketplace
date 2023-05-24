@@ -49,3 +49,13 @@ Route::delete('shoppingcart/{user_id}/articles/{article_id}',
         \App\Http\Controllers\WarenkorbController::class, 'removeFromCart_api'
     ]
 );
+
+Route::get('/name/{name}/category/{cat}',
+    [
+        \App\Http\Controllers\ArticleController::class, 'getNameCategory_api'
+    ]);
+
+Route::get('/categories/{name}',
+    [
+        \App\Http\Controllers\ArticleController::class, 'getCategory_api'
+    ]);
