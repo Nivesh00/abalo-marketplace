@@ -95,7 +95,6 @@
                                 i++;
                             }
                         this.$data.current_data = new_data;
-
                     }
                 }
                 xhttp.send();

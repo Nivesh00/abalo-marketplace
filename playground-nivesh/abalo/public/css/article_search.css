@@ -9,6 +9,8 @@
     padding: 2%;
     border-radius: 50px;
     border: 2px solid black;
+    height: auto;
+    min-width: 600px;
 }
 
 #search-icon{
@@ -48,6 +50,7 @@ img{
 #results{
     list-style-type: none;
     padding: 2px;
+    margin-top: -10px;
 }
 
 .article-item{
@@ -64,7 +67,8 @@ img{
 }
 
 .article-item:last-child{
-    border-radius: 0 0 20px 20px;
+    border-radius: 0 0 10px 10px;
+    border-top: 2px solid black;
     border-bottom: 1px solid black;
 }
 
@@ -78,7 +82,7 @@ img{
 
 select{
     width: 100%;
-    height: 100%;
+    height: 45px;
     border: 0;
     background-color: lightgrey;
 }
