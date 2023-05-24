@@ -90,3 +90,8 @@ Route::post('/newarticle_verify',
         \App\Http\Controllers\NewArticleController::class,
         'verify'
     ])->name('verify');
+
+
+Route::get('search', function (){
+        return view('article_search');
+    });
