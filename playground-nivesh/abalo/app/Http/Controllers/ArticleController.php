@@ -80,6 +80,7 @@ class ArticleController extends Controller
 
         $myResult = DB::table('ab_articlecategory')->select()
             ->where('ab_name', 'ilike', '%' . $name . '%' )
+            ->where('ab_parent', 'IS NOT', DB::raw('null'))
             ->get()->toArray();
 
         return response()->json($myResult);
