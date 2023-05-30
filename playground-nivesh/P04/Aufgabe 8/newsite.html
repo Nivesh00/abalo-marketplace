@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <script src="../../abalo/public/js/vue.js"></script>
+    <title>Willkommen bei Abalo</title>
+</head>
+<body id="wrapper">
+
+<header id="ab-header" style="display: flex; justify-content: space-between;
+left: 0; right: 0; top: 0;position: fixed; background-color: lightgrey">
+
+    <header-item
+    v-for="row in pages"
+    :page="row.page"
+    :title="row.title"
+    :id="row.id"></header-item>
+
+</header>
+
+<main id="ab-body">
+    <main-item></main-item>
+</main>
+
+<footer id="ab-footer">
+    <footer-item :middle="window_title"></footer-item>
+</footer>
+
+</body>
+</html>
+
+<script type="module">
+    import HeaderItem from './ab_header.js';
+    import MainItem from './ab_main.js';
+    import FooterItem from './ab_footer.js';
+
+    let app = Vue.createApp({
+        components: {
+            HeaderItem,
+            MainItem,
+            FooterItem
+        },
+        data(){
+            return{
+                pages: [
+                    { id: 0, page: 'Neue Deals', title: 'Neue Deals ansehen'},
+                    { id: 1, page: 'Home', title: 'Zurück zur Übersicht'},
+                    { id: 2, page: 'Über uns', title: 'Mehr über Abalo erfahren'}
+                ],
+                window_title: document.title
+            }
+        }
+    }).mount('#wrapper');
+</script>

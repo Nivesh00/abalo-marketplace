@@ -99,3 +99,8 @@ Route::get('search', function (){
 //Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/newsite', function (){
+    return view('newsite');
+});
+

@@ -17,7 +17,7 @@
         </select>
     </div>
     <div id="search-bar">
-        <input v-model="current_input" @input="update_data"
+        <input v-model="current_input" @input="update_data" @keyup.enter="GoToItem"
                id="search-article" type="text" placeholder="Artikel suchen">
         <ul id="results">
             <li class="article-item" v-for="data in current_data" :key="data.id"
@@ -71,8 +71,8 @@
             update_data(){
 
                 if(this.$data.current_input === null || this.$data.current_input === ''
-                || this.$data.current_input.length < 3) {
-                    this.$data.current_data = null;
+                || this.$data.current_input.length < 1) {
+                    this.$data.current_data = [];
                     return;
                 }
 

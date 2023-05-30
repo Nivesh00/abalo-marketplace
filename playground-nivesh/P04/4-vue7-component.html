@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <script src="../abalo/public/js/vue.js"></script>
+    <title>Komponent</title>
+</head>
+<body>
+
+<div id="body-1">
+    <zoom-item></zoom-item>
+</div>
+
+<script type="module">
+import ZoomItem from './4-vue7-component'
+
+let data = Vue.createApp({
+    components: {
+        ZoomItem
+    },
+    data: {
+        labels: [
+            {id: 0, name: 'Cars', show: true},
+            {id: 1, name: 'Furniture', show: true},
+            {id: 2, name: 'Garden', show: true}
+        ]
+
+    },
+    methods: {
+        ReduceItemSize(id){
+            for(let data_set in this.$data.labels){
+                if(data_set.id !== id){
+                    data_set.show = false;
+                }
+            }
+        }
+    }
+}).mount('#body-1')
+
+</script>
+
+</body>
+</html>

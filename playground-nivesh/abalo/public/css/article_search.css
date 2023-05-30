@@ -72,9 +72,12 @@ img{
     border-radius: 60px;
 }
 
+.article-item:first-child{
+    border-top: 2px solid black;
+}
+
 .article-item:last-child{
     border-radius: 0 0 10px 10px;
-    border-top: 2px solid black;
     border-bottom: 1px solid black;
 }
 
