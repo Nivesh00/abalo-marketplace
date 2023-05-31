@@ -13,7 +13,7 @@
 </head>
 <body>
 
-
+<!--style="margin-top: 200px"-->
 <div id="big-container" style="margin-top: 200px">
     <!--<div id="category">
         <select @change="update_data" v-model="current_category" name="article-category">
@@ -164,6 +164,10 @@
                 this.$data.tableTop = this.$data.tableTop === '150px' ? '10px' : '150px';
                 this.$data.tableBottom = this.$data.tableBottom === '100px' ? '10px' : '100px';
                 this.$data.showTop = this.$data.showTop === '150px' ? '10px' : '150px';
+
+                document.getElementById('big-container').style.marginTop =
+                    document.getElementById('big-container').style.marginTop === '200px' ?
+                        '20px' : '200px';
             }
         }
     }).mount('#article-app');
@@ -196,7 +200,7 @@
                 current_input: null,
                 categories: all_categories,
                 current_category: '*',
-                tableTop: '150px',
+                conTop: '300px'
 
             };
         },
