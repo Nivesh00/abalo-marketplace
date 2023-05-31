@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use function MongoDB\BSON\toJSON;
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
 
 class ArticleController extends Controller
 {
@@ -13,15 +15,42 @@ class ArticleController extends Controller
     function articlesfound(Request $request)
     {
         $search = $request->query('search');
+        $page = intval($request->get('page'));
+
+        $pages = ceil((DB::table('ab_article')
+                ->select()
+                ->where('ab_name', 'ilike', '%' . $search . '%' )
+                ->count())/20);
+
+
+        if($page < 1) $page = 1;
+        elseif ($page > $pages) $page = $pages;
+
 
         $myResult = DB::table('ab_article')->select()
             ->where('ab_name', 'ilike', '%' . $search . '%' )
+            ->skip(($page - 1) * 20)->take(20)
             ->get()->toArray();
+
+        $pagerange[] = $page;
+        $pos = 1;
+
+        while(sizeof($pagerange) < 5 && $pos < 5)
+        {
+            if($page - $pos > 0) $pagerange[] = $page - $pos;
+            if($page + $pos <= $pages) $pagerange[] = $page + $pos;
+            $pos++;
+        }
+        sort($pagerange);
 
         return view(
             'article',
             [
-                'myResult' => $myResult
+                'myResult' => $myResult,
+                'search' =>$search,
+                'page' => $page,
+                'pages' => $pages,
+                'pagerange' => $pagerange
             ]);
     }
 

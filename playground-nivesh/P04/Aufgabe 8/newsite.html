@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <script src="../../abalo/public/js/vue.js"></script>
+    <script src="../../abalo/public/js/navigationsmenue.js"></script>
     <title>Willkommen bei Abalo</title>
 </head>
 <body id="wrapper">
 
-<header id="ab-header" style="display: flex; justify-content: space-between;
-left: 0; right: 0; top: 0;position: fixed; background-color: lightgrey">
+<!--
+<header id="ab-header" style="display: flex; border-bottom: 2px solid black;
+justify-content: space-between; left: 0; right: 0; top: 0;
+position: fixed; background-color: lightgrey; min-height: 30px">
 
     <header-item
     v-for="row in pages"
@@ -17,13 +20,22 @@ left: 0; right: 0; top: 0;position: fixed; background-color: lightgrey">
     :id="row.id"></header-item>
 
 </header>
+-->
 
-<main id="ab-body">
+<main id="ab-body" style="max-width: 800px; margin: 50px auto;">
+
+    <div v-if="!showImpressum" id="main_articles">
     <main-item></main-item>
+    </div>
+
+    <div v-if="showImpressum">
+        <impressum></impressum>
+    </div>
+
 </main>
 
 <footer id="ab-footer">
-    <footer-item :middle="window_title"></footer-item>
+    <footer-item @clicked-impressum="toggleImpressum" :middle="window_title"></footer-item>
 </footer>
 
 </body>
@@ -33,12 +45,14 @@ left: 0; right: 0; top: 0;position: fixed; background-color: lightgrey">
     import HeaderItem from './ab_header.js';
     import MainItem from './ab_main.js';
     import FooterItem from './ab_footer.js';
+    import Impressum from '../Aufgabe 9/impressum.js';
 
     let app = Vue.createApp({
         components: {
             HeaderItem,
             MainItem,
-            FooterItem
+            FooterItem,
+            Impressum
         },
         data(){
             return{
@@ -47,7 +61,13 @@ left: 0; right: 0; top: 0;position: fixed; background-color: lightgrey">
                     { id: 1, page: 'Home', title: 'Zurück zur Übersicht'},
                     { id: 2, page: 'Über uns', title: 'Mehr über Abalo erfahren'}
                 ],
-                window_title: document.title
+                window_title: document.title,
+                showImpressum: false
+            }
+        },
+        methods: {
+            toggleImpressum() {
+                this.$data.showImpressum = !this.$data.showImpressum;
             }
         }
     }).mount('#wrapper');

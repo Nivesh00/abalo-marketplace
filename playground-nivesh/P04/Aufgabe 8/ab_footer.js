@@ -1,3 +1,5 @@
+import impressum from '../Aufgabe 9/impressum.js'
+
 export default{
     props: ['middle'],
     data(){
@@ -5,16 +7,21 @@ export default{
 
         }
     },
+    emits: ['clicked-impressum'],
     methods: {
         back(){
             history.back();
+        },
+        toggleImpressum(){
+            this.$emit('clicked-impressum');
         }
     },
     template:
         `<div style="display: flex; justify-content: space-between;
-        bottom: 0; left: 0; right: 0; position: fixed; background-color: lightgrey">
+        bottom: 0; left: 0; right: 0; position: fixed; background-color: lightgrey;
+        border-top: 2px solid black; min-height: 30px">
          <div @click="back">&#8617; Zurück</div>
          <div>{{ middle }}</div>
-         <div>Mein Konto</div>
+         <div @click="toggleImpressum">Impressum</div>
         </div>`
 }

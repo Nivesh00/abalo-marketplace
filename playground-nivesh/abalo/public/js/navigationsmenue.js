@@ -265,7 +265,7 @@ class NavMenu
             '\n' +
             'Etiam condimentum posuere magna non imperdiet. Fusce ac faucibus est. Cras sodales semper velit, id sagittis ex scelerisque at. Nunc magna turpis, varius in neque et, posuere euismod nisi. Ut vel eleifend diam. Curabitur eros leo, mollis eget diam ac, gravida accumsan felis. Quisque commodo ex non libero maximus, et eleifend nibh viverra. Aliquam nec pulvinar sem, in suscipit ante. '
 
-        document.body.append(lipsum);
+        //document.body.append(lipsum);
     }
 }
 

@@ -252,5 +252,7 @@ function  removeFromCart(id)
     }
 }
 
+
+
 window.onload = () => Warenkorb();
 
