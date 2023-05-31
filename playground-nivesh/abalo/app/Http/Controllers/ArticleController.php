@@ -56,8 +56,6 @@ class ArticleController extends Controller
 
     function getArticles_api($name)
     {
-        if ($name == '*') $name = '';
-
 
         $myResult = DB::table('ab_article')->select()
             ->where('ab_name', 'ilike', '%' . $name . '%' )
@@ -82,7 +80,7 @@ class ArticleController extends Controller
     }
 
     function getNameCategory_api($name, $cat){
-        if ($name == '*') $name = '';
+        //if ($name == '*') $name = '';
         if($cat == '*') $cat = '';
 
         $myResult = DB::table('ab_article')
