@@ -12,9 +12,10 @@
     <title>Aufgabe 10</title>
 </head>
 <body>
+{{--}}
 
-<!--style="margin-top: 200px"-->
 <div id="big-container" style="margin-top: 200px">
+
     <!--<div id="category">
         <select @change="update_data" v-model="current_category" name="article-category">
             <option selected value="*">Keine Kategorie</option>
@@ -42,7 +43,7 @@
     </div>
 </div>
 
-
+{{--}}
 <div id="article-app">
 
 <div id="showAll" @click="toggleShowAll" :style="{ marginTop: showTop}">
@@ -55,7 +56,8 @@
     <div id="col-3">WARENKORB</div>
 </div>
 
-<div id="mybody" :style="{ marginBottom: tableBottom }" style="margin-top: 20px">
+<div id="mybody" :style="{ marginTop: showTop, marginBottom: tableBottom }" style="margin-top:
+20px">
     @if(empty($myResult))
         <div id="no_res">
         <div id="no_msg" style="z-index: 0">Kein Artikel gefunden!
@@ -191,7 +193,7 @@
     }
 
     xhttp_categories.send();
-    */
+
 
     let big_container = Vue.createApp({
         data(){
@@ -242,7 +244,7 @@
             }
         }
     }).mount('#big-container')
-
+        */
     /*
     let get_categories = setInterval(function(){
         if(all_categories.length) {

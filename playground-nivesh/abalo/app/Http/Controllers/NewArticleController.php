@@ -55,9 +55,7 @@ class NewArticleController extends Controller
     function addArticle_api(Request $request)
     {
 
-        /*
-         * If $request
-         */
+
         $name = trim($request->post('name'));
         $price = trim($request->post('price'));
         $description = trim($request->post('description'));
@@ -65,7 +63,7 @@ class NewArticleController extends Controller
 
         /*
          * If curl in Terminal used
-         */
+
         if(file_get_contents("php://input") != null)
         {
 
@@ -87,7 +85,7 @@ class NewArticleController extends Controller
             $price = trim($curl_data['price']);
             if ($curl_data['description']) $description = trim($curl_data['description']);
         }
-
+        */
         if(!isset($description)) $description = 'Keine Beschreibung';
         if(!isset($name) || !isset($price) || $price <= 0)
         {

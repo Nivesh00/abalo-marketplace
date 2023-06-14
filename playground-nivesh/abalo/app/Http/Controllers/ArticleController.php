@@ -20,7 +20,7 @@ class ArticleController extends Controller
         $pages = ceil((DB::table('ab_article')
                 ->select()
                 ->where('ab_name', 'ilike', '%' . $search . '%' )
-                ->count())/20);
+                ->count())/5);
 
 
         if($page < 1) $page = 1;
@@ -29,7 +29,7 @@ class ArticleController extends Controller
 
         $myResult = DB::table('ab_article')->select()
             ->where('ab_name', 'ilike', '%' . $search . '%' )
-            ->skip(($page - 1) * 20)->take(20)
+            ->skip(($page - 1) * 5)->take(5)
             ->get()->toArray();
 
         $pagerange[] = $page;
@@ -111,5 +111,43 @@ class ArticleController extends Controller
             ->get()->toArray();
 
         return response()->json($myResult);
+    }
+
+    function getNSArticles_api($name, $cat, $page)
+    {
+
+        if($name === '*') $name = '';
+        if($cat === 'Kategorie') $cat = '';
+
+        $myResult = DB::table('ab_article')
+            ->join('ab_article_has_articlecategory',
+                'ab_article.id', '=', 'ab_article_has_articlecategory.ab_article_id')
+            ->join('ab_articlecategory', 'ab_article_has_articlecategory.ab_articlecategory_id',
+                '=', 'ab_articlecategory.id')
+            ->where('ab_article.ab_name', 'ilike', $name . '%' )
+            ->where('ab_articlecategory.ab_name', 'ilike', $cat . '%')
+            ->get([
+                'ab_article.id as id',
+                'ab_article.ab_name as name',
+                'ab_articlecategory.ab_name as cat',
+                'ab_article.ab_description as descr',
+                'ab_article.ab_price as price'
+            ])
+            ->skip(($page -1) * 10)
+            ->take(10)
+            ->toArray();
+
+        $i = (($page - 1) * 10) + 1;
+        foreach ($myResult as $result)
+        {
+            $result->num = $i++;
+        }
+
+        return $myResult;
+    }
+
+    function getImagesPath($articles)
+    {
+
     }
 }

@@ -104,3 +104,7 @@ Route::get('/newsite', function (){
     return view('newsite');
 });
 
+Route::get('/articlenew', function (){
+    return view('new_article');
+});
+

@@ -1,0 +1,40 @@
+#a-articles{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#page-select{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    position: fixed;
+    bottom: 0;
+    background-color: whitesmoke;
+    left: 0;
+    right: 0;
+}
+
+#search-box{
+    background-color: lightgrey;
+    max-width: 600px;
+    padding: 2%;
+    margin: 20px auto;
+    border-radius: 20px;
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+#search-var{
+    background-color: lightgrey;
+}
+
+#search-items{
+    display: grid;
+    grid-template-columns: 20% 70% 10%;
+    text-align: center;
+}
+
+#search-bar input{
+    width: 90%;
+}

@@ -59,3 +59,9 @@ Route::get('/categories/{name}',
     [
         \App\Http\Controllers\ArticleController::class, 'getCategory_api'
     ]);
+
+Route::get('/name/{name}/category/{cat}/page/{page}',
+    [
+        \App\Http\Controllers\ArticleController::class, 'getNSArticles_api'
+    ]);
+
