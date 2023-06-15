@@ -65,3 +65,12 @@ Route::get('/name/{name}/category/{cat}/page/{page}',
         \App\Http\Controllers\ArticleController::class, 'getNSArticles_api'
     ]);
 
+Route::post('/articles/{id}/sold',
+    [
+        \App\Http\Controllers\ArticleController::class, 'sold_api'
+    ]);
+
+Route::post('/articles/{id}/deal',
+    [
+        \App\Http\Controllers\ArticleController::class, 'deal_api'
+    ]);

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ab_article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Ratchet\Client\WebSocket;
 use function MongoDB\BSON\toJSON;
 use function PHPUnit\Framework\isEmpty;
 use function PHPUnit\Framework\isNull;
+use function Ratchet\Client\connect;
 
 class ArticleController extends Controller
 {
@@ -146,8 +150,50 @@ class ArticleController extends Controller
         return $myResult;
     }
 
-    function getImagesPath($articles)
+    function sold_api($id)
     {
+        $data = DB::table('ab_article')->get()->where('id', '=', $id)->toArray()[0];
+
+        //$msg = "Großartig! Ihr Artikel" . $data['ab_name'] . "wurde erfolgreich verkauf!";
+
+
+        //require '../../../vendor/autoload.php';
+
+        \Ratchet\Client\connect('ws://localhost:8085/sold/user=' . $data->ab_creator_id)
+            ->then(function($conn) use ($data) {
+                $conn->send("Großartig! Ihr Artikel " . $data->ab_name . " wurde erfolgreich verkauf!");
+                $conn->close();
+            }, function ($e) {
+                echo "Could not connect: {$e->getMessage()}\n";
+            });
+
+        return response()->json($data);
 
     }
+
+
+    public function getmyarticles(){
+
+        $data = DB::table('ab_article')->get()
+            ->where('ab_creator_id', '=', 5)->toArray();
+
+        return view('deal', ['data' => $data]);
+    }
+
+    public function deal_api($id){
+        $data = DB::table('ab_article')->get()
+            ->where('id', '=', $id)->toArray()[$id - 1];
+
+        \Ratchet\Client\connect('ws://localhost:8085/deal')
+            ->then(function($conn) use ($id, $data) {
+                $conn->send('Der Artikel ' . $data->ab_name .
+                    ' wird nun günstiger angeboten! Greifen Sie schnell zu');
+                $conn->send('id is ' . $id);
+
+                $conn->close();
+            }, function ($e) {
+                echo "Could not connect: {$e->getMessage()}\n";
+            });
+    }
+
 }

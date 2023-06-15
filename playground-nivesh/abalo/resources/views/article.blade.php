@@ -56,6 +56,8 @@
     <div id="col-3">WARENKORB</div>
 </div>
 
+    <div id="deal" style="margin-top: 200px"></div>
+
 <div id="mybody" :style="{ marginTop: showTop, marginBottom: tableBottom }" style="margin-top:
 20px">
     @if(empty($myResult))
@@ -99,7 +101,7 @@
                                  alt="Kein Bild verfügbar">
                         @endif
                     </td>
-                    <td class="name">{{$result->ab_name}}</td>
+                    <td class="name" id="{{'id is ' . $result->id}}">{{$result->ab_name}}</td>
                     <td class="price">{{$result->ab_price}}€</td>
                     <td class="description">{{$result->ab_description}}</td>
                     <td class="add" id="{{$result->id}}"></td>
@@ -177,6 +179,32 @@
     let all_items = {};
     let all_articles = [];
     let all_categories = [];
+
+    let conn = new WebSocket('ws://localhost:8085/deal');
+    conn.onmessage = msg => {
+
+        if(msg.data.includes('Der Artikel')){
+
+            let deal = document.getElementById('deal');
+
+            let array = document.getElementsByClassName('name');
+            for (let name of array){
+                if ('Der Artikel ' + name.innerText +
+                ' wird nun günstiger angeboten! Greifen Sie schnell zu' !== msg.data)
+                    continue;
+                deal.innerText = msg.data;
+            }
+
+            deal.addEventListener('click', function(){
+                article_app.$data.showAll = value;
+                deal.style.display = 'none';
+            });
+        }
+        else{
+            document.getElementById(msg.data).parentElement.style.backgroundColor = 'yellow';
+            console.log(msg.data)
+        }
+    }
 
     /*
     let xhttp_categories = new XMLHttpRequest();

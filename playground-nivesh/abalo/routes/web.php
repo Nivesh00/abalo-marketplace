@@ -108,3 +108,15 @@ Route::get('/articlenew', function (){
     return view('new_article');
 });
 
+Route::get('/socket.maintenance', function (){
+    return view('websocketclient');
+});
+
+Route::get('/socket.sold', function (){
+    return view('sold');
+});
+
+Route::get('/socket.deal',
+    [
+        \App\Http\Controllers\ArticleController::class, 'getmyarticles'
+    ]);
