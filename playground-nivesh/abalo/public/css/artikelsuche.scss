@@ -1,0 +1,55 @@
+@use 'menu';
+$background_color: #f1f1f1;
+
+.articleInput {
+    width: 300px;
+    border: 1px solid black;
+}
+
+.articleTable {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__headerRow {
+        background-color: $background_color;
+    }
+
+    &__headerCell {
+        padding: 10px;
+        font-weight: bold;
+    }
+
+    &__row:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    &__cell {
+        padding: 10px;
+    }
+
+    &__image {
+        width: 100px;
+        height: auto;
+    }
+}
+
+.navButton {
+    text-align: center;
+
+    &__prev,
+    &__next {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: menu.$hover_color;
+        border: none;
+        cursor: pointer;
+
+        &.prev {
+            margin-right: 10px;
+        }
+
+        &:hover {
+            background-color: #aaa;
+        }
+    }
+}

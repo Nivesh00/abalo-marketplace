@@ -8,7 +8,10 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
-                'resources/js/deal.js'
+                'resources/js/deal.js',
+                'public/css/menu.scss',
+                'public/css/artikelsuche.scss',
+                'public/css/artikeleingabe.scss'
             ],
             refresh: true,
         }),

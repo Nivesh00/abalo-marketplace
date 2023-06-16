@@ -1,0 +1,4 @@
+1.) Live Chat für support. Man könnte einen Livechat erstellen, mit dem Kunden schnellen Support bekommen können
+2.) Live Feedback. Kunden könnten Live ihren feedback bekommen. Bei einem hinterlassenen Kommentar für einen verkauften Artikel, könnte der verkäufer sofort
+die Feedback nachricht lesen
+3.) Preis Änderung. Falls der Verkäufer den Preis eines seiner Artikel ändert, könnte jeder der diesen Artikel verfolgt, sofort über die Preisänderung benachrichtigt werden.
