@@ -152,8 +152,7 @@ class ArticleController extends Controller
 
     function sold_api($id)
     {
-        $data = DB::table('ab_article')->get()->where('id', '=', $id)->toArray()[0];
-
+        $data = DB::table('ab_article')->get()->where('id', '=', $id)->toArray()[$id - 1];
         //$msg = "Großartig! Ihr Artikel" . $data['ab_name'] . "wurde erfolgreich verkauf!";
 
 
